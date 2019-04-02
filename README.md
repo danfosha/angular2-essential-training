@@ -60,6 +60,16 @@ If you are getting a list of errors on `npm install` that look like `Cannot find
   "@types/node": "6.0.41"
   
 }
+
+Also, try this in package.json:
+"scripts": {
+   "clean": "rimraf app/**/*.js app/**/*.js.map",
+   "tsc": "tsc",
+   "tsc:w": "tsc -w",
+   "lite": "lite-server",
+   "prestart": "npm run clean",
+   "start": "concurrent \"npm run tsc:w\" \"npm run lite\" "
+ }
 ```
 If the caret is there (would look like `"@types/core-js": "^0.9.34"`) then remove it (or copy the contents of the [package.json](https://github.com/coursefiles/angular2-essential-training/blob/master/package.json) file on the origin repository) and run `npm install` again.
   
